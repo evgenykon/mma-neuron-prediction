@@ -1,0 +1,18 @@
+{
+  "name": "github.mma-predictions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "gridsome build",
+    "dev": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "buefy": "^0.9.21",
+    "csv-parser": "^3.0.0",
+    "gridsome": "^0.7.0",
+    "js-md5": "^0.7.3",
+    "node-html-parser": "^5.4.2-0"
+  }
+}
