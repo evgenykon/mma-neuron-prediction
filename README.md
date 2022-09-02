@@ -1,12 +1,19 @@
 # MMA Prediction
 
-## Data sources
+## Sources
+
+### Data
 
 https://fighters.mixedmartialarts.com
 https://fightpages.com
 https://github.com/grappler185/MMA
 http://ufcstats.com/fight-details/2f4d42e0b9696f71
 https://www.kaggle.com/datasets/mdabbert/ultimate-ufc-dataset/discussion
+
+### ML lib
+
+https://learn.ml5js.org/#/reference/neural-network
+https://brain.js.org/#/getting-startednpm ins
 
 ## Model parameters
 
