@@ -6,6 +6,4 @@ node_modules
 dist
 .env
 .env.*
-./data/export/csv/*
-./data/export/json/*
-./data/buffer/*
+./data/buffer

@@ -6340,6 +6340,12 @@
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
+"neural-data-normalizer@github:adadgio/neural-data-normalizer":
+  "resolved" "git+ssh://git@github.com/adadgio/neural-data-normalizer.git#e4562ad06fc0936d53b273d9272cf81163ce3fdf"
+  "version" "1.1.0"
+  dependencies:
+    "synaptic" "^1.1.4"
+
 "next-tick@^1.0.0":
   "integrity" "sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ=="
   "resolved" "https://registry.npmjs.org/next-tick/-/next-tick-1.1.0.tgz"

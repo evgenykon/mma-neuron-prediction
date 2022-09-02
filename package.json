@@ -14,6 +14,7 @@
     "csv-parser": "^3.0.0",
     "gridsome": "^0.7.0",
     "js-md5": "^0.7.3",
+    "neural-data-normalizer": "github:adadgio/neural-data-normalizer",
     "node-html-parser": "^5.4.2-0",
     "synaptic": "^1.1.4"
   }
