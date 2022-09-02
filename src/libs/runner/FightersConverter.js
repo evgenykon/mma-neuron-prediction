@@ -1,19 +1,24 @@
 const BUFFER_DIR = './data/buffer/'
 
-
-
 import fs from 'fs';
 import md5 from 'js-md5';
-import FighterBufferIndex from "../FighterBufferIndex.js";
-import FightersDataStructure from "../FightersDataStructure.js";
-import FightsDataStructure from '../FightsDataStructure.js';
+import FighterBufferIndex from "../entities/FighterBufferIndex.js";
+import FightersDataStructure from "../entities/FightersDataStructure.js";
+import FightsDataStructure from '../entities/FightsDataStructure.js';
 
 export default class FightersConverter {
 
-    index;
+    // Indexes
+    fighers;
+    countries;
+    teams;
+    stances;
 
     constructor() {
-        this.index = {};
+        this.fighers = {};
+        this.countries = {};
+        this.teams = {};
+        this.stances = {};
     }
 
     /**
@@ -36,6 +41,9 @@ export default class FightersConverter {
             }
             fighter.clearTypes();
             await this._processFigher(fighter);
+            await this._processCountry(fighter);
+            await this._processTeam(fighter);
+            await this._processStance(fighter);
         }
     }
 
@@ -83,8 +91,29 @@ export default class FightersConverter {
             srcCount++;
         }
         data.merge(fighter);
-        this.index[fname] = new FighterBufferIndex(fighter, srcCount);
+        this.fighers[fname] = new FighterBufferIndex(fighter, srcCount);
         fs.writeFileSync(filePath, JSON.stringify(data));
+    }
+
+    async _processCountry(fighter) {
+        if (!fighter.country) {
+            return;
+        }
+        this.countries[md5(fighter.country)] = fighter.country;
+    }
+
+    async _processTeam(fighter) {
+        if (!fighter.team) {
+            return;
+        }
+        this.teams[md5(fighter.team)] = fighter.team;
+    }
+
+    async _processStance(fighter) {
+        if (!fighter.stance) {
+            return;
+        }
+        this.stances[md5(fighter.stance)] = fighter.stance;
     }
 
     /**
@@ -110,15 +139,15 @@ export default class FightersConverter {
         fs.writeFileSync(f2Path, JSON.stringify(fighter2));
     }
 
-    /**
-     * 
-     */
-    storeBufferIndex() {
-        fs.writeFileSync(BUFFER_DIR + 'index.json', JSON.stringify(this.index));
+    storeBufferIndexes() {
+        fs.writeFileSync(BUFFER_DIR + '_index_fighters.json', JSON.stringify(this.fighers));
+        fs.writeFileSync(BUFFER_DIR + '_index_countries.json', JSON.stringify(this.countries));
+        fs.writeFileSync(BUFFER_DIR + '_index_teams.json', JSON.stringify(this.teams));
+        fs.writeFileSync(BUFFER_DIR + '_index_stances.json', JSON.stringify(this.stances));
+        console.log('Indexes stored');
     }
 
     /**
-     * 
      * @param {*} fname 
      * @returns 
      */
@@ -126,6 +155,11 @@ export default class FightersConverter {
         return BUFFER_DIR + fname + '.json';
     }
 
+    /**
+     * @param {*} f1name 
+     * @param {*} f2name 
+     * @returns 
+     */
     _getFightPath(f1name, f2name) {
         return BUFFER_DIR + 'fight_' + f1name + '_' + f2name + '.json';
     }

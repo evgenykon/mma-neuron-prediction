@@ -1,5 +1,5 @@
 const BUFFER_DIR = './data/buffer/'
-const INDEX_FILE = BUFFER_DIR + 'index.json';
+const INDEX_FILE = BUFFER_DIR + '_index_fighters.json';
 
 import fs from 'fs';
 import FightersDataStructure from '../src/libs/FightersDataStructure.js';

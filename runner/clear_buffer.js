@@ -11,5 +11,5 @@ fs.readdir(BUFFER_DIR, (err, files) => {
       if (err) throw err;
     });
   }
-  console.log('Data cleared');
+  console.log('All buffers has been cleared');
 });

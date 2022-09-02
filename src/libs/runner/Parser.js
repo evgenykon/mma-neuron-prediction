@@ -27,7 +27,7 @@ export default class Parser {
                 await converter.processFightsData(buffer, item);
             }
         }
-        converter.storeBufferIndex();
+        converter.storeBufferIndexes();
     }
 
     /**
