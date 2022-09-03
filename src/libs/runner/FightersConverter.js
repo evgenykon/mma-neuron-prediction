@@ -13,12 +13,14 @@ export default class FightersConverter {
     countries;
     teams;
     stances;
+    fights;
 
     constructor() {
         this.fighers = {};
         this.countries = {};
         this.teams = {};
         this.stances = {};
+        this.fights = {};
     }
 
     /**
@@ -122,13 +124,12 @@ export default class FightersConverter {
     async _processFight(fight) {
         const f1name = md5(fight.fighter1.name);
         const f2name = md5(fight.fighter2.name);
-        const filePath = this._getFightPath(f1name, f2name);
+        this._storeFight(fight);
         const f1Path = this._getFighterPath(f1name);
         const f2Path = this._getFighterPath(f2name);
         if (!fs.existsSync(f1Path) || !fs.existsSync(f2Path)) {
             return;
         }
-        fs.writeFileSync(filePath, JSON.stringify(fight));
         const fighter1 = new FightersDataStructure();
         fighter1.map(JSON.parse(fs.readFileSync(f1Path)));
         fighter1.addFight(fight);
@@ -144,6 +145,7 @@ export default class FightersConverter {
         fs.writeFileSync(BUFFER_DIR + '_index_countries.json', JSON.stringify(this.countries));
         fs.writeFileSync(BUFFER_DIR + '_index_teams.json', JSON.stringify(this.teams));
         fs.writeFileSync(BUFFER_DIR + '_index_stances.json', JSON.stringify(this.stances));
+        fs.writeFileSync(BUFFER_DIR + '_index_fights.json', JSON.stringify(this.fights));
         console.log('Indexes stored');
     }
 
@@ -156,12 +158,13 @@ export default class FightersConverter {
     }
 
     /**
-     * @param {*} f1name 
-     * @param {*} f2name 
      * @returns 
      */
-    _getFightPath(f1name, f2name) {
-        return BUFFER_DIR + 'fight_' + f1name + '_' + f2name + '.json';
+    _storeFight(fight) {
+        const name = md5(fight.fighter1.name + fight.fighter2.name + fight.date);
+        const path = BUFFER_DIR + 'fight_' + name + '.json';
+        fs.writeFileSync(path, JSON.stringify(fight));
+        this.fights[name] = fight;
     }
 
 };

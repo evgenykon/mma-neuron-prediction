@@ -60,7 +60,6 @@ export default class FighterLoader {
     }
 
     getFighterRowset() {
-        const fighter = this.getFighter();
         let data = {};
         for (let column of FighterValuableColumns) {
             data[column] = this.getFieldNumbericValue(column);
@@ -69,10 +68,17 @@ export default class FighterLoader {
     }
 
     getFighterNumbers() {
-        
         let data = [];
         for (let column of FighterValuableColumns) {
             data.push(this.getFieldNumbericValue(column));
+        }
+        return data;
+    }
+
+    getFighterFrame() {
+        let data = {};
+        for (let column of FighterValuableColumns) {
+            data[column] = [this.getFieldNumbericValue(column)];
         }
         return data;
     }
