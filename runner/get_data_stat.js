@@ -2,7 +2,8 @@ const BUFFER_DIR = './data/buffer/'
 const INDEX_FILE = BUFFER_DIR + '_index_fighters.json';
 
 import fs from 'fs';
-import FightersDataStructure from '../src/libs/FightersDataStructure.js';
+import FighterLoader, {FighterValuableColumns} from '../src/libs/loader/FighterLoader.js';
+import FightersDataStructure from '../src/libs/entities/FightersDataStructure.js';
 
 if (!fs.existsSync(INDEX_FILE)) {
     throw new Error('Index file not found, run collect_data.js first');
@@ -40,6 +41,7 @@ if (param === '--ftr_count') {
         if (indexData[hash].name.indexOf(search) >= 0) {
             console.log(hash, indexData[hash]);
             console.log(printFighterData(hash));
+            console.log((new FighterLoader(indexData[hash].name)).getFighterFrame());
         }
     }
 }

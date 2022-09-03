@@ -19,6 +19,8 @@ const hiddenLayer = new Layer(FighterValuableColumns.length);
 const outputLayer = new Layer(1);
 const learningRate = .3;
 
+inputLayer.project(hiddenLayer, Layer.connectionType.ALL_TO_ALL);
+hiddenLayer.project(outputLayer, Layer.connectionType.ALL_TO_ALL);
 
 const theNetwork = new Network({
 	input: inputLayer,

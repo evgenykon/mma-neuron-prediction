@@ -39,3 +39,14 @@ For reset data run `node runner/clear_data.js`
 
 ### 3. Embedding and normalization
 
+1. Run `node runner/embedding_fighters.js`
+
+### 4. Training network
+
+1. Run `node runner/train_network.js`
+2. Network stored to `data/buffer/network.json`
+
+### 5. Do prediction by network
+
+1. Find fighters name: ex `Ciryl Gane` and `Tai Tuivasa`
+2. 
