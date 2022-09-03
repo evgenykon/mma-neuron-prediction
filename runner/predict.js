@@ -3,13 +3,8 @@ import synaptic from 'synaptic';
 import FighterLoader, {FighterValuableColumns} from '../src/libs/loader/FighterLoader.js';
 import * as dfd from "danfojs-node";
 import fs from 'fs';
-import IndexLoader from '../src/libs/loader/IndexLoader.js';
 
-const Neuron = synaptic.Neuron,
-	Layer = synaptic.Layer,
-	Network = synaptic.Network,
-	Trainer = synaptic.Trainer,
-	Architect = synaptic.Architect;
+const Network = synaptic.Network;
 
 if (process.argv.length !== 4) {
     console.log('Execution:');
