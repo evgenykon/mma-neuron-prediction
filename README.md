@@ -4,17 +4,17 @@
 
 ### Data
 
-https://fighters.mixedmartialarts.com
-https://fightpages.com
-https://github.com/grappler185/MMA
-http://ufcstats.com/fight-details/2f4d42e0b9696f71
-https://www.kaggle.com/datasets/mdabbert/ultimate-ufc-dataset/discussion
+- https://fighters.mixedmartialarts.com
+- https://fightpages.com
+- https://github.com/grappler185/MMA
+- http://ufcstats.com/fight-details/2f4d42e0b9696f71
+- https://www.kaggle.com/datasets/mdabbert/ultimate-ufc-dataset/discussion
 
 ### ML usefull libs
 
-https://learn.ml5js.org/#/reference/neural-network
-https://brain.js.org/#/getting-started
-https://danfo.jsdata.org/api-reference/general-functions
+- https://learn.ml5js.org/#/reference/neural-network
+- https://brain.js.org/#/getting-started
+- https://danfo.jsdata.org/api-reference/general-functions
 
 ## Data description
 
