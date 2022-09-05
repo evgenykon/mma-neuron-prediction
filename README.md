@@ -49,4 +49,14 @@ For reset data run `node runner/clear_data.js`
 ### 5. Do prediction by network
 
 1. Find fighters name: ex `Ciryl Gane` and `Tai Tuivasa`
-2. 
+
+# Testing models
+
+For Khabib/Conor fight example based on my intuitive values
+
+```
+$ node tests/FighterModelTest.js
+0.9042481615439346 -- Khabib rate
+0.8955649107285791 -- Conor rate
+0.4409158741937186 -- Khabib win
+```
