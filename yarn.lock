@@ -1944,7 +1944,7 @@
   "resolved" "https://registry.npmjs.org/async-each/-/async-each-1.0.3.tgz"
   "version" "1.0.3"
 
-"async@^2.6.4":
+"async@^2.6.1", "async@^2.6.4":
   "integrity" "sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA=="
   "resolved" "https://registry.npmjs.org/async/-/async-2.6.4.tgz"
   "version" "2.6.4"
@@ -6297,6 +6297,14 @@
     "figures" "^1.3.5"
     "squeak" "^1.0.0"
 
+"loggd@^2.2.0":
+  "integrity" "sha512-/KmKf+z0ZvDZFdSwgIKOFncCumho6bPg95zPUOgYDVyHq4sStHbHpuSm8DREYzKWHtiC7VkHiymI21qJayYqAw=="
+  "resolved" "https://registry.npmjs.org/loggd/-/loggd-2.2.0.tgz"
+  "version" "2.2.0"
+  dependencies:
+    "async" "^2.6.1"
+    "underscore" "^1.9.1"
+
 "lokijs@^1.5.6":
   "integrity" "sha512-Q5ALD6JiS6xAUWCwX3taQmgwxyveCtIIuL08+ml0nHwT3k0S/GIFJN+Hd38b1qYIMaE5X++iqsqWVksz7SYW+Q=="
   "resolved" "https://registry.npmjs.org/lokijs/-/lokijs-1.5.12.tgz"
@@ -9612,6 +9620,11 @@
   "integrity" "sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg=="
   "resolved" "https://registry.npmjs.org/unc-path-regex/-/unc-path-regex-0.1.2.tgz"
   "version" "0.1.2"
+
+"underscore@^1.9.1":
+  "integrity" "sha512-BQFnUDuAQ4Yf/cYY5LNrK9NCJFKriaRbD9uR1fTeXnBeoa97W0i41qkZfGO9pSo8I5KzjAcSY2XYtdf0oKd7KQ=="
+  "resolved" "https://registry.npmjs.org/underscore/-/underscore-1.13.4.tgz"
+  "version" "1.13.4"
 
 "unicode-canonical-property-names-ecmascript@^2.0.0":
   "integrity" "sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ=="

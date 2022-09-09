@@ -6,8 +6,8 @@ export default class FighterModel {
     
     endurance; // выносливость
     strikingForce; // сила удара
-    strikingSkill; // навыки ударки
-    strikingAccuracy; // точность ударов
+    strikingSkill; // навыки ударки + точность ударов
+    //strikingAccuracy; // точность ударов
     strikingStamina; // стойкость, держак
     distanceControl; // контроль дистанции
     movingSkill; // навыки перемещения

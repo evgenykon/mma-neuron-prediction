@@ -15,6 +15,7 @@
     "danfojs-node": "^1.1.1",
     "gridsome": "^0.7.0",
     "js-md5": "^0.7.3",
+    "loggd": "^2.2.0",
     "neural-data-normalizer": "github:adadgio/neural-data-normalizer",
     "node-html-parser": "^5.4.2-0",
     "synaptic": "^1.1.4"
