@@ -2,7 +2,9 @@
   "name": "github.mma-predictions",
   "private": true,
   "type": "module",
+  "version": "0.0.2",
   "scripts": {
+    "prediction": "node ./runner/prediction.js",
     "build": "gridsome build",
     "dev": "gridsome develop",
     "explore": "gridsome explore"
@@ -15,9 +17,10 @@
     "danfojs-node": "^1.1.1",
     "gridsome": "^0.7.0",
     "js-md5": "^0.7.3",
-    "loggd": "^2.2.0",
     "neural-data-normalizer": "github:adadgio/neural-data-normalizer",
     "node-html-parser": "^5.4.2-0",
-    "synaptic": "^1.1.4"
+    "pouchdb": "^7.3.0",
+    "synaptic": "^1.1.4",
+    "yargs": "^17.5.1"
   }
 }

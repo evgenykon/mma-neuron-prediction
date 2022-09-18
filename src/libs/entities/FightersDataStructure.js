@@ -49,6 +49,7 @@ export default class FightersDataStructure {
     normalWeight;
     lastFightWinRatio;
     lastFightWins;
+    lastFightWeight;
     careerAge;
     maxRoundNumber;
     totalRoundInCareer;
