@@ -2,6 +2,7 @@ export default class FighterEntityL1 {
     name;
     lastFightWeight;
     height;
+    reach;
     birthDate;
     country;
     team;

@@ -1,5 +1,7 @@
 import yargs from "yargs";
 import { hideBin } from 'yargs/helpers'
+import DbReset from "./v2/DbReset.js";
+import DbSearch from "./v2/DbSearch.js";
 import PredictionParser from './v2/PredictionParser.js';
 
 yargs(hideBin(process.argv))
@@ -8,10 +10,10 @@ yargs(hideBin(process.argv))
     (new PredictionParser()).parse();
 })
 .command('reset', 'Reset collected database', (yargs) => {}, function (argv) {
-    console.log('reset');
+    (new DbReset()).run();
 })
 .command('search [query]', 'Search and print collected info', (yargs) => {}, function (argv) {
-    console.log('search')
+    (new DbSearch()).run(argv.query);
 })
 .command('train [network]', 'Train one of network', (yargs) => {}, function (argv) {
     console.log('train')

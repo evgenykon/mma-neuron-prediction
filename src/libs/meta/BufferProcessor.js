@@ -7,6 +7,9 @@ import FighterEntityL2 from "../entities/v2/FighterEntityL2.js";
 import FighterEntityL3 from "../entities/v2/FighterEntityL3.js";
 import BaseStyleEntity from "../entities/v2/BaseStyleEntity.js";
 import FightEntity from "../entities/v2/FightEntity.js";
+import FighterL1Validator from "../validators/FighterL1Validator.js";
+import EmptyFighterNameError from "../errors/EmptyFighterNameError.js";
+import FighterL2Validator from "../validators/FighterL2Validator.js";
 
 /**
  * 
@@ -21,18 +24,44 @@ export default class BufferProcessor {
         let result = [];
         for (let row of this.buffer) {
             if (this.metaItem.type === MetaItemTypeEnum.FIGHTERS) {
-                const fighterL1 = this.processFighterL1Item(row);
-                result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL1));
-                const fighterL2 = this.processFighterL2Item(row);
-                result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL2));
-                const fighterL3 = this.processFighterL3Item(row);
-                result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL3));
-
-                if (fighterL1.lastFightWeight) {
-                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.WEIGHT_CATEGORY, this.processWeightCategoryItem(fighterL1, fighterL2)));
+                try {
+                    let fighterL1 = this.processFighterL1Item(row);
+                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL1));
+                    if (fighterL1.lastFightWeight) {
+                        result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.WEIGHT_CATEGORY, this.processWeightCategoryItem(fighterL1, fighterL2)));
+                    }
+                    if (fighterL1.baseStyle) {
+                        result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.BASE_STYLE, this.processBaseStyleEntity(fighterL1)));
+                    }
+                } catch(e) {
+                    if (e instanceof EmptyFighterNameError) {
+                        console.error('EmptyFighterNameError', row);
+                        continue;
+                    } else {
+                        throw e;
+                    }
                 }
-                if (fighterL1.baseStyle) {
-                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.BASE_STYLE, this.processBaseStyleEntity(fighterL1)));
+                try {
+                    const fighterL2 = this.processFighterL2Item(row);
+                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL2));
+                } catch (e) {
+                    if (e instanceof EmptyFighterNameError) {
+                        console.error('EmptyFighterNameError', row);
+                        continue;
+                    } else {
+                        throw e;
+                    }
+                }
+                try {
+                    const fighterL3 = this.processFighterL3Item(row);
+                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL3));
+                } catch (e) {
+                    if (e instanceof EmptyFighterNameError) {
+                        console.error('EmptyFighterNameError', row);
+                        continue;
+                    } else {
+                        throw e;
+                    }
                 }
 
             } else if (this.metaItem === MetaItemTypeEnum.FIGHTS) {
@@ -59,7 +88,7 @@ export default class BufferProcessor {
                 fighter[field] = item[m[field]];
             }
         }
-        return fighter;
+        return this.validateFighterL1(fighter);
     }
 
     
@@ -77,7 +106,7 @@ export default class BufferProcessor {
                 fighter[field] = item[m[field]];
             }
         }
-        return fighter;
+        return this.validateFighterL2(fighter);
     }
 
     /**
@@ -151,4 +180,20 @@ export default class BufferProcessor {
         return fight;
     }
 
+    /**
+     * @param {FighterEntityL1} entity 
+     * @returns 
+     */
+    validateFighterL1(entity) {
+        return (new FighterL1Validator(entity)).validate();
+    }
+
+    
+    /**
+     * @param {FighterEntityL2} entity 
+     * @returns 
+     */
+     validateFighterL2(entity) {
+        return (new FighterL2Validator(entity)).validate();
+    }
 }

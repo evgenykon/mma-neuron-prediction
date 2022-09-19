@@ -7,8 +7,8 @@
         "structure": [
             {"name": "fighter_name"}, {"age":"age"}, {"country":"country"}, {"height":"height"}, 
             {"team": "association"}, {"wins": "wins"}, {"winsKo": "wins_ko"}, 
-            {"winsSub": "wins_submission"}, {"winsDec":"wins_decision"}, {"losses": "lossess"},
-            {"lossKo": "losses_ko"}, {"lossSub": "losses_submission"}, {"lossDec": "losses_decision"}
+            {"winsSub": "wins_submission"}, {"winsDecTotal":"wins_decision"}, {"losses": "lossess"},
+            {"lossKo": "losses_ko"}, {"lossSub": "losses_submission"}, {"lossDecTotal": "losses_decision"}
         ]
     },
     {

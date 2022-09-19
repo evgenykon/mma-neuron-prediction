@@ -7,6 +7,9 @@ import BufferProcessorTypeEnum from '../../src/libs/meta/enum/BufferProcessorTyp
 
 const META_SOURCE = './data/export/meta.json';
 
+/**
+ * 
+ */
 export default class PredictionParser {
     constructor() {
         this.meta = JSON.parse(fs.readFileSync(META_SOURCE));
@@ -57,22 +60,30 @@ export default class PredictionParser {
                 }
                 let dbItem = null;
                 try {
-                    dbItem = await fightersDb.get(item.object.name);
+                    dbItem = await fightersDb.get(item.object.name.toLowerCase());
                 } catch (e) {}
                 if (dbItem) {
-                    console.log(dbItem);
-                    break;
+                    if (dbItem.merged.includes(item.object.constructor.name)) {
+                        continue;
+                    }
+                    const assignedObject = Object.assign({}, dbItem.data, item.object);
+                    dbItem.data = assignedObject;
+                    dbItem.merged.push(item.object.constructor.name); 
+                    await fightersDb.put(dbItem);
                 } else {
                     await fightersDb.put({
-                        _id: item.object.name,
-                        data: item.object
+                        _id: item.object.name.toLowerCase(),
+                        data: item.object,
+                        merged: [item.object.constructor.name]
                     });
                 }
             } else {
+                console.log(item);
                 break;
             }
         }
-        //
-        //db.put(doc);
+        fightersDb.createIndex({
+            index: {fields: ['_id']}
+        });
     }
 }
