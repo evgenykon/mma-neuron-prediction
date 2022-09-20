@@ -102,7 +102,12 @@ export default class PredictionParser {
             }
         }
         fightersDb.createIndex({
+            name: 'i_fighters',
             index: {fields: ['_id']}
+        });
+        fightsDb.createIndex({
+            name: "i_date",
+            index: {fields: ['date']}
         });
     }
 }
