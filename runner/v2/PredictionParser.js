@@ -52,6 +52,8 @@ export default class PredictionParser {
      */
     async storeToDb(dbObjects) {
         const fightersDb = new PouchDB('data/db/fighters');
+        const fightsDb = new PouchDB('data/db/fights');
+
         for (let item of dbObjects) {
             if (item.type === BufferProcessorTypeEnum.FIGHTER) {
                 if (!item.object.name) {
@@ -77,9 +79,26 @@ export default class PredictionParser {
                         merged: [item.object.constructor.name]
                     });
                 }
+
+            } else if (item.type === BufferProcessorTypeEnum.FIGHT) {
+                if (!item.object.id) {
+                    console.error('Bad fight id', item.object);
+                    continue;
+                }
+                let dbItem = null;
+                try {
+                    dbItem = await fightsDb.get(item.object.id);
+                } catch (e) {}
+                if (!dbItem) {
+                    await fightsDb.put({
+                        _id: item.object.id,
+                        data: item.object,
+                        date: item.object.date
+                    });
+                }
+
             } else {
-                console.log(item);
-                break;
+                console.log('Skipped item', item);
             }
         }
         fightersDb.createIndex({

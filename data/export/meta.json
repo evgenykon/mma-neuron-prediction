@@ -27,13 +27,13 @@
         "format": "CSV",
         "separator": ";",
         "structure": [
-            {"f1_name": "R_fighter"}, {"f1_kd": "R_KD"}, {"f1_ss": "R_SIG_STR"}, {"f1_ssPct": "R_SIG_STR_pct"},
-            {"f1_ts": "R_TOTAL_STR"}, {"f1_td": "R_TD"}, {"f1_tdPct": "R_TD_pct"}, {"f1_subAtt": "R_SUB_ATT"},
+            {"f1Name": "R_fighter"}, {"f1KD": "R_KD"}, {"f1SStr": "R_SIG_STR"}, {"f1SSPrc": "R_SIG_STR_pct"},
+            {"f1TotalStr": "R_TOTAL_STR"}, {"f1Td": "R_TD"}, {"f1TdPrc": "R_TD_pct"}, {"f1SubAtt": "R_SUB_ATT"},
             {"f1_head": "R_HEAD"}, {"f1_body": "R_BODY"}, {"f1_leg": "R_LEG"},
-            {"f2_name": "B_fighter"}, {"f2_kd": "B_KD"}, {"f2_ss": "B_SIG_STR"}, {"f2_ssPct": "B_SIG_STR_pct"},
-            {"f2_ts": "B_TOTAL_STR"}, {"f2_td": "B_TD"}, {"f2_tdPct": "B_TD_pct"}, {"f2_subAtt": "B_SUB_ATT"},
+            {"f2Name": "B_fighter"}, {"f2KD": "B_KD"}, {"f2SStr": "B_SIG_STR"}, {"f2SSPrc": "B_SIG_STR_pct"},
+            {"f2TotalStr": "B_TOTAL_STR"}, {"f2Td": "B_TD"}, {"f2TdPrc": "B_TD_pct"}, {"f2SubAtt": "B_SUB_ATT"},
             {"f2_head": "B_HEAD"}, {"f2_body": "B_BODY"}, {"f2_leg": "B_LEG"},
-            {"format": "Format"}, {"winner": "Winner"}, {"winBy": "win_by"}, {"lastRound": "last_round"},
+            {"format": "Format"}, {"winnerName": "Winner"}, {"winBy": "win_by"}, {"lastRound": "last_round"},
             {"lastRoundTime":"last_round_time"}, {"referree":"Referee"}, {"date": "date"}, {"location": "location"}
         ]
     }

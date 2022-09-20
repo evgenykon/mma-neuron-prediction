@@ -1,4 +1,6 @@
 export default class FightEntity {
+    id
+
     f1Name;
     f1KD;
     f1SStr;

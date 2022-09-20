@@ -10,6 +10,7 @@ import FightEntity from "../entities/v2/FightEntity.js";
 import FighterL1Validator from "../validators/FighterL1Validator.js";
 import EmptyFighterNameError from "../errors/EmptyFighterNameError.js";
 import FighterL2Validator from "../validators/FighterL2Validator.js";
+import FightValidator from "../validators/FightValidator.js";
 
 /**
  * 
@@ -64,11 +65,17 @@ export default class BufferProcessor {
                     }
                 }
 
-            } else if (this.metaItem === MetaItemTypeEnum.FIGHTS) {
-                const fight = this.processFight(row);
-                result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHT, fight));
+            } else if (this.metaItem.type === MetaItemTypeEnum.FIGHTS) {
+                try {
+                    const fight = this.processFight(row);
+                    result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHT, fight));
+                } catch (e) {
+                    throw e;
+                }
 
                 // сразу добавить статистику по бою к бойцам нельзя, бойцов может не быть
+            } else {
+                console.error('Unknown meta item', this.metaItem)
             }
         }
         return result;
@@ -177,7 +184,7 @@ export default class BufferProcessor {
                 fight[field] = item[m[field]];
             }
         }
-        return fight;
+        return this.validateFight(fight);
     }
 
     /**
@@ -193,7 +200,15 @@ export default class BufferProcessor {
      * @param {FighterEntityL2} entity 
      * @returns 
      */
-     validateFighterL2(entity) {
+    validateFighterL2(entity) {
         return (new FighterL2Validator(entity)).validate();
+    }
+
+    /**
+     * @param {FightEntity} entity 
+     * @returns 
+     */
+    validateFight(entity) {
+        return (new FightValidator(entity)).validate();
     }
 }
