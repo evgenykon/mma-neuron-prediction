@@ -12,7 +12,7 @@ export default class DbSearch {
         });
         if (fighters.docs.length) {
             for (let doc of fighters.docs) {
-                console.log(doc.data);
+                console.log(doc);
             }
         } else {
             console.log('fighters: No data found');

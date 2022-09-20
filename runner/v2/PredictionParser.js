@@ -1,9 +1,14 @@
 import fs from 'fs';
 import PouchDB from 'pouchdb';
+import find from 'pouchdb-find';
 import MetaCsvReader from "../../src/libs/meta/MetaCsvReader.js";
 import MetaJsonReader from "../../src/libs/meta/MetaJsonReader.js";
 import BufferProcessor from '../../src/libs/meta/BufferProcessor.js';
 import BufferProcessorTypeEnum from '../../src/libs/meta/enum/BufferProcessorTypeEnum.js';
+import ProfileFiller from './ProfileFiller.js';
+import { fill } from '@tensorflow/tfjs';
+
+PouchDB.plugin(find);
 
 const META_SOURCE = './data/export/meta.json';
 
@@ -76,7 +81,8 @@ export default class PredictionParser {
                     await fightersDb.put({
                         _id: item.object.name.toLowerCase(),
                         data: item.object,
-                        merged: [item.object.constructor.name]
+                        merged: [item.object.constructor.name],
+                        fights: []
                     });
                 }
 
@@ -97,6 +103,24 @@ export default class PredictionParser {
                     });
                 }
 
+                dbItem = null;
+                try {
+                    dbItem = await fightersDb.get(item.object.f1Name.toLowerCase());
+                } catch (e) {}
+                if (dbItem) {
+                    dbItem.fights.push(item.object.id);
+                    await fightersDb.put(dbItem);
+                }
+                
+                dbItem = null;
+                try {
+                    dbItem = await fightersDb.get(item.object.f2Name.toLowerCase());
+                } catch (e) {}
+                if (dbItem) {
+                    dbItem.fights.push(item.object.id);
+                    await fightersDb.put(dbItem);
+                }
+
             } else {
                 console.log('Skipped item', item);
             }
@@ -109,5 +133,24 @@ export default class PredictionParser {
             name: "i_date",
             index: {fields: ['date']}
         });
+    }
+
+    /**
+     * 
+     */
+    async fillEmptyData() {
+        const fightersDb = new PouchDB('data/db/fighters');
+        const fighters = await fightersDb.find({
+            selector: {
+                $nor: [
+                    {fights: {$size: 0}}
+                ]
+            },
+            limit: 10
+        });
+        for (let doc of fighters.docs) {
+            console.log(doc);
+            await (new ProfileFiller(doc)).fill();
+        }
     }
 }

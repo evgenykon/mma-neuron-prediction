@@ -7,7 +7,9 @@ import PredictionParser from './v2/PredictionParser.js';
 yargs(hideBin(process.argv))
 .usage('$0 <cmd> [args]')
 .command('parse', 'Parse data according to data/export/meta.json', (yargs) => {}, function (argv) {
-    (new PredictionParser()).parse();
+    const parser = new PredictionParser();
+    //parser.parse();
+    parser.fillEmptyData();    
 })
 .command('reset', 'Reset collected database', (yargs) => {}, function (argv) {
     (new DbReset()).run();
