@@ -149,7 +149,7 @@ export default class PredictionParser {
             limit: 10
         });
         for (let doc of fighters.docs) {
-            console.log(doc);
+            console.log('fillEmptyData fighter', doc);
             await (new ProfileFiller(doc)).fill();
         }
     }
