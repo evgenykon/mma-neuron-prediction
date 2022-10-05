@@ -61,6 +61,17 @@ f1.fightLocationAffect = 0.4; <-- home fight for fighter, home fight for opponen
 f1.mentalStamina = 0.7;     <-- wins after loses, wins with high damage, wins with equal rounds, wins by split decision, wins of current opponent, loses of current opponent
 ```
 
+### Base style calculation
+
+1. Prc of wins by KO
+2. Prc of wins by Sub
+3. Prc of wins by dec
+4. Prc of loss by KO
+5. Prc of loss by Sub
+6. Prc of loss by dec
+7. TD
+8. TD def
+9. KD
 
 ### TODO
  * 1. всех бойцов разобрать по категориям (может быть несколько)

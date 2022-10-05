@@ -3,6 +3,7 @@ export default class FighterEntityL1 {
     lastFightWeight;
     height;
     reach;
+    weightCategory;
     birthDate;
     country;
     team;

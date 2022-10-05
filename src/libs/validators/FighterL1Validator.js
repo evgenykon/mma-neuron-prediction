@@ -42,6 +42,9 @@ export default class FighterL1Validator extends BaseValidator {
         if (this.entity.lossDecTotal) {
             this.entity.lossDecTotal = this.sanitizeInt(this.entity.lossDecTotal);
         }
+        if (this.entity.lastFightWeight) {
+            this.entity.lastFightWeight = this.sanitizeInt(this.entity.lastFightWeight);
+        }
         return this.entity;
     }
 
@@ -70,8 +73,8 @@ export default class FighterL1Validator extends BaseValidator {
     }
 
     sanitizeInt(value) {
-        const num = parseInt(value);
-        if (isNaN(value)) {
+        const num = parseInt(value.replace(/[^0-9]+/g));
+        if (isNaN(num)) {
             console.error('Input', value);
             throw Error('sanitizeInt: error while sanitizing value');
         }

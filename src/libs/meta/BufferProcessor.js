@@ -29,7 +29,7 @@ export default class BufferProcessor {
                     let fighterL1 = this.processFighterL1Item(row);
                     result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.FIGHTER, fighterL1));
                     if (fighterL1.lastFightWeight) {
-                        result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.WEIGHT_CATEGORY, this.processWeightCategoryItem(fighterL1, fighterL2)));
+                        //result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.WEIGHT_CATEGORY, this.processWeightCategoryItem(fighterL1, fighterL2)));
                     }
                     if (fighterL1.baseStyle) {
                         result.push(new BufferProcessorEntity(BufferProcessorTypeEnum.BASE_STYLE, this.processBaseStyleEntity(fighterL1)));
